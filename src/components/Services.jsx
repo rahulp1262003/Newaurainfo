@@ -41,49 +41,48 @@ const fadeInUp = {
 
 export default function ServicesSection() {
     return (
-        <section id="services" className="py-16 bg-black text-white">
-            <div className="max-w-7xl mx-auto px-4 text-center">
-                <motion.h2
-                    className="text-5xl font-bold mb-4"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeInUp}
-                    transition={{ duration: 0.5 }}
-                >
-                    Our Services
-                </motion.h2>
+        <section id="services" className=" bg-black">
+            <div className="py-16 mx-[5%] max-md:mx-0 rounded-[5rem] bg-white text-black">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <motion.h2
+                        className="text-5xl font-bold mb-4"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                        transition={{ duration: 0.5 }}
+                    >
+                        Our Services
+                    </motion.h2>
 
-                <motion.p
-                    className="text-gray-400 mb-12"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeInUp}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    We provide complete end-to-end solutions for web and mobile development.
-                </motion.p>
+                    <motion.p
+                        className="text-gray-400 mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        We provide complete end-to-end solutions for web and mobile development.
+                    </motion.p>
 
-                <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={index}
-                            className="group border-2 bg-gray-900 border-gray-700 hover:border-blue-400 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300"
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeInUp}
-                            transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                        >
-                            <div className="mb-4 flex justify-center">{service.icon}</div>
-                            <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-                            <p className="text-gray-400 text-sm mb-4">{service.description}</p>
-                            {/* <button className="mt-auto text-sm text-blue-400 hover:text-blue-300 transition">
-                                Learn More →
-                            </button> */}
-                        </motion.div>
-                    ))}
+                    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                className={`group border-2 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 ${index % 2 === 0 ? 'bg-[#F2EFEA] text-black border-gray-200 hover:border-blue-400' : 'bg-zinc-800 text-white border-gray-700 hover:border-blue-400'}`}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={fadeInUp}
+                                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                            >
+                                <div className="mb-4 flex justify-center">{service.icon}</div>
+                                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                                <p className="text-sm mb-4">{service.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

@@ -41,7 +41,7 @@ export default function ContactSection() {
     <section id="contact" className="py-20 bg-black text-white">
       <div className="max-w-4xl mx-auto px-4">
         <motion.h2
-          className="text-3xl font-bold text-center mb-4"
+          className="text-5xl font-bold text-center mb-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -51,7 +51,7 @@ export default function ContactSection() {
           Contact Us
         </motion.h2>
         <motion.p
-          className="text-center text-gray-400 mb-12"
+          className="text-center text-zinc-400 mb-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function ContactSection() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="bg-gray-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
             type="email"
@@ -86,7 +86,7 @@ export default function ContactSection() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="bg-gray-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <textarea
             name="message"
@@ -95,7 +95,7 @@ export default function ContactSection() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="bg-gray-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           ></textarea>
           <button
             type="submit"
@@ -103,7 +103,7 @@ export default function ContactSection() {
           >
             Send Message
           </button>
-          {status && <p className="text-center text-sm text-gray-400">{status}</p>}
+          {status && <p className="text-center text-sm text-zinc-400">{status}</p>}
         </motion.form>
       </div>
     </section>

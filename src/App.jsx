@@ -5,6 +5,7 @@ import ServicesSection from './components/Services'
 import ContactSection from './components/ContactUS'
 import AboutSection from './components/About'
 import Footer from './components/Footer'
+import ProjectSection from './components/Project'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      {/* <ProjectSection /> */}
       <ContactSection />
       <Footer />
     </>

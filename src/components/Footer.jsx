@@ -11,7 +11,7 @@ export default function Footer() {
 
     return (
         <footer className="bg-gray-900 text-white py-8">
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
+            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left ">
                 <div>
                     <h3 className="text-xl font-semibold mb-2">Newaurainfo</h3>
                     <ul className="text-gray-400 text-sm space-y-1 md:flex">

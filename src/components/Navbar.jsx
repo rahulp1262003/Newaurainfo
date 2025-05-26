@@ -23,8 +23,8 @@ export default function Navbar() {
     };
 
     return (
-        <header className="fixed w-full z-50 bg-black bg-opacity-90 text-white shadow">
-            <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <header className="fixed w-full z-50 bg-transparent backdrop-blur-xl text-white">
+            <div className=" max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                 <a href="#home" className="text-2xl font-bold text-blue-500">
                     Newaurainfo
                 </a>
