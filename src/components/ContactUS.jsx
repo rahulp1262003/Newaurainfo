@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
+// require('dotenv').config();
+const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -7,34 +13,30 @@ const fadeInUp = {
 };
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const form = useRef();
   const [status, setStatus] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
 
-    try {
-      const res = await fetch("https://formspree.io/f/xzzrlbpa", { // Replace with your Formspree endpoint
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-
-      if (res.ok) {
+    emailjs.sendForm(
+      serviceID,
+      templateID,
+      form.current,
+      publicKey,
+      // "your_service_id",    // 🔁 replace with your EmailJS Service ID
+      // "your_template_id",   // 🔁 replace with your EmailJS Template ID
+      // form.current,
+      // "your_public_key"     // 🔁 replace with your EmailJS Public Key
+    )
+      .then(() => {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send message.");
-      }
-    } catch (error) {
-      setStatus("Error sending message.");
-    }
+        form.current.reset(); // Clear form
+      })
+      .catch(() => {
+        setStatus("Error sending message.");
+      });
   };
 
   return (
@@ -62,6 +64,7 @@ export default function ContactSection() {
         </motion.p>
 
         <motion.form
+          ref={form}
           className="grid gap-6"
           initial="hidden"
           whileInView="visible"
@@ -74,8 +77,6 @@ export default function ContactSection() {
             type="text"
             name="name"
             placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
             required
             className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -83,8 +84,6 @@ export default function ContactSection() {
             type="email"
             name="email"
             placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
             required
             className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -92,8 +91,6 @@ export default function ContactSection() {
             name="message"
             rows="5"
             placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
             required
             className="bg-zinc-800 text-white p-4 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           ></textarea>

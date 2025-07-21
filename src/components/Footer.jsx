@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { MapPin, Phone, Mail } from 'lucide-react'
 
 export default function Footer() {
     const scrollToSection = (id) => {
@@ -23,12 +24,24 @@ export default function Footer() {
                 </div>
 
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Contact</h3>
-                    <p className="text-gray-400 text-sm">
-                        contact@newaurainfo.com<br />
-                        +91 98765 43210<br />
-                        Anand, Gujarat, India
-                    </p>
+                    <h3 className="text-xl font-semibold mb-4">Contact</h3>
+                    <div className="text-gray-400 text-sm flex flex-col md:items-start md:flex md:justify-center">
+                        <div className="flex justify-center mb-4">
+                            <Mail size={18} className="mr-4" />
+                            <a href="mailto:contacttonewaurainfo@gmail.com" rel="noopener noreferrer" >contacttonewaurainfo@gmail.com</a>
+                        </div>
+                        <div className="flex justify-center mb-4">
+                            <Phone size={18} className="mr-4" />
+                            <a href="tel:8200502449">+91 82005 02449</a>
+                        </div>
+                        <div className="flex justify-center">
+                            <MapPin size={18} className="mr-4" /><a href="https://maps.app.goo.gl/JR7g3XZfWXCouYuMA"
+                                target="_blank"
+                                rel="noopener noreferrer">Shop 3, Nr. Primary school - 19,
+                                Oppo. Shikhod Talav,<br /> Anand, Gujarat, India. - 388001.</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div className="text-center text-gray-500 text-sm mt-6">
