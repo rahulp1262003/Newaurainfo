@@ -26,7 +26,7 @@ export default function Navbar() {
         <header className="fixed w-full z-50 bg-transparent backdrop-blur-xl text-white">
             <div className=" max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                 <a href="#home" className="text-2xl font-bold text-blue-500">
-                    Newaurainfo
+                    Naxora
                 </a>
                 <nav className="hidden md:flex space-x-8">
                     {navLinks.map((link) => (

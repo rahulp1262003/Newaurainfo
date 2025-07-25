@@ -1,24 +1,21 @@
 import { motion } from "framer-motion";
-
+import Quotely from '../assets/Quotely.png'
+import HBP from '../assets/HBP1.png'
 const projects = [
     {
-        title: "E-Commerce App",
-        image: "https://cdn.dribbble.com/userupload/17919100/file/original-4040769ee756ae0a166b1cedb84e9567.jpg?resize=752x&vertical=center",
-        description: "A modern and scalable shopping experience built using Next.js, Stripe, and Tailwind CSS.",
-        link: "#"
+        title: "Quotely",
+        image: Quotely,
+        description: "🌟 Share & Download your favorite Suvichar, Quotes, and Video Status.",
+        link: "https://play.google.com/store/apps/details?id=com.dailyquotes.app.quotely"
     },
     {
-        title: "Chat Application",
-        image: "https://cdn.dribbble.com/userupload/9508817/file/original-4a443e64eb7000c0234a27647ca72e3d.png?resize=752x&vertical=center",
-        description: "Real-time messaging platform using Socket.io, Node.js, and MongoDB.",
-        link: "#"
+        title: "Human Body Parts",
+        image: HBP,
+        description: "Human Body Parts Kids Learning is an educational app designed especially for children to learn about human body parts in a fun, interactive, and engaging way.",
+        link: "https://play.google.com/store/apps/details?id=com.humanbodyparts.kidslearning.app"
     },
-    {
-        title: "Portfolio Website",
-        image: "https://cdn.dribbble.com/userupload/37179259/file/original-99fdefac96631e4668d231378941e405.jpg?resize=752x&vertical=center",
-        description: "Responsive and animated personal portfolio using React and Framer Motion.",
-        link: "#"
-    }
+
+
 ];
 
 const fadeInUp = {
@@ -29,7 +26,7 @@ const fadeInUp = {
 export default function ProjectSection() {
     return (
         <section id="projects" className="py-20 bg-black text-white">
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="w-full mx-auto px-4">
                 <motion.h2
                     className="text-5xl font-bold text-center mb-4"
                     initial="hidden"
@@ -38,7 +35,7 @@ export default function ProjectSection() {
                     variants={fadeInUp}
                     transition={{ duration: 0.5 }}
                 >
-                    Recent Projects
+                    Our Products
                 </motion.h2>
                 <motion.p
                     className="text-center text-gray-400 mb-12"
@@ -51,11 +48,11 @@ export default function ProjectSection() {
                     Here's a look at some of our recent work.
                 </motion.p>
 
-                <div className="grid gap-10 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+                <div className="flex justify-center items-center flex-wrap">
                     {projects.map((project, index) => (
                         <motion.div
                             key={index}
-                            className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition"
+                            className="mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition m-5 "
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
@@ -65,12 +62,12 @@ export default function ProjectSection() {
                             <img src={project.image} alt={project.title} className="w-full h-52 object-cover" />
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                                <p className="text-gray-400 text-sm mb-4">{project.description.length >= 70 ? project.description.slice(0, 70) + ' ...' : project.description}</p>
                                 <a
                                     href={project.link}
                                     className="text-blue-400 hover:text-blue-300 text-sm font-medium"
                                 >
-                                    View Project →
+                                    View Product →
                                 </a>
                             </div>
                         </motion.div>
