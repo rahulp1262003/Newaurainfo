@@ -31,8 +31,14 @@ export default function Footer() {
                             <a href="mailto:contacttonewaurainfo@gmail.com" rel="noopener noreferrer" >contacttonewaurainfo@gmail.com</a>
                         </div>
                         <div className="flex justify-center mb-4">
-                            <Phone size={18} className="mr-4" />
-                            <a href="tel:8200502449">+91 82005 02449</a>
+                            <div>
+                                <Phone size={18} className="mr-4" />
+                            </div>
+                            <div className="flex flex-col">
+                                <a href="tel:8200502449">+91 82005 02449</a>
+                                <a href="tel:7990549414">+91 79905 49414</a>
+                                <a href="tel:9033721291">+91 90337 21291</a>
+                            </div>
                         </div>
                         <div className="flex justify-center">
                             <MapPin size={18} className="mr-4" /><a href="https://maps.app.goo.gl/JR7g3XZfWXCouYuMA"
