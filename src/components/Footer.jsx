@@ -14,7 +14,7 @@ export default function Footer() {
         <footer className="bg-gray-900 text-white py-8">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left ">
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Naxora</h3>
+                    <h3 className="text-xl font-semibold mb-2">Nexora</h3>
                     <ul className="text-gray-400 text-sm space-y-1 md:flex">
                         <li><button onClick={() => scrollToSection('home')} className="hover:text-white cursor-pointer pr-3">Home</button></li>
                         <li><button onClick={() => scrollToSection('about')} className="hover:text-white cursor-pointer pr-3">About</button></li>
