@@ -43,7 +43,7 @@ export default function ContactSection() {
     <section id="contact" className="py-20 bg-black text-white">
       <div className="max-w-4xl mx-auto px-4">
         <motion.h2
-          className="text-5xl font-bold text-center mb-4"
+          className="text-5xl max-md:text-4xl font-bold text-center mb-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

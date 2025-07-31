@@ -1,40 +1,75 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Nexora from "../assets/Nexora.png";
 
 const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
+    { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
+    { name: "Product", href: "#product" },
+    { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" }
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const scrollToSection = (e, href) => {
-        e.preventDefault();
-        const section = document.querySelector(href);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-            // Add a small delay before closing to ensure the click completes
-            setTimeout(() => setIsOpen(false), 300);
+        if (href.startsWith("#")) {
+            e.preventDefault();
+
+            const handleScroll = () => {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => setIsOpen(false), 300);
+                }
+            };
+
+            if (location.pathname !== "/") {
+                // Go back to homepage first, then scroll
+                navigate("/");
+                // Delay scroll after navigation
+                setTimeout(() => {
+                    handleScroll();
+                }, 300); // adjust if needed
+            } else {
+                handleScroll();
+            }
+        } else {
+            // Direct route (like /services)
+            setIsOpen(false);
         }
     };
 
+
     return (
-        <header className="fixed w-full z-50 bg-transparent backdrop-blur-xl text-white">
-            <div className=" max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-                <a href="#home" className="text-2xl font-bold text-blue-500">
-                    Nexora
-                </a>
-                <nav className="hidden md:flex space-x-8">
+        <header className="fixed w-full z-50 bg-transparent text-white backdrop-blur-2xl">
+            <div className="max-w-7xl mx-auto flex items-center justify-between ">
+                <div className="flex items-center">
+                    <div>
+                        <img src={Nexora} alt="" className="w-18" />
+                    </div>
+                    <div className="flex flex-col">
+                        <Link to="/" className="text-2xl font-bold text-white">
+                            Nexora
+                        </Link>
+                        <a href="#home" className=" text-white">
+                            Info Solution
+                        </a>
+                    </div>
+                </div>
+                <nav className="hidden md:flex">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
                             onClick={(e) => scrollToSection(e, link.href)}
-                            className="hover:text-blue-400 transition cursor-pointer"
+                            className="hover:text-black cursor-pointer rounded-xl transition-all duration-600 ease-in-out hover:bg-white px-5 py-2"
                         >
                             {link.name}
                         </a>
@@ -68,14 +103,14 @@ export default function Navbar() {
                     >
                         <div className="flex flex-col space-y-4 pt-2">
                             {navLinks.map((link) => (
-                                <a
+                                <Link
                                     key={link.name}
-                                    href={link.href}
+                                    to={link.href}
                                     onClick={(e) => scrollToSection(e, link.href)}
                                     className="text-white hover:text-blue-400 transition cursor-pointer py-2"
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </motion.nav>

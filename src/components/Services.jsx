@@ -1,38 +1,7 @@
 import { motion } from "framer-motion";
-import { Code, Smartphone, Brush, Cloud, ShieldCheck, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const services = [
-    {
-        icon: <Code className="w-10 h-10 text-blue-400 group-hover:scale-110 transition" />,
-        title: "Web Development",
-        description: "Fast, scalable websites using React, Next.js and modern frameworks."
-    },
-    {
-        icon: <Smartphone className="w-10 h-10 text-green-400 group-hover:scale-110 transition" />,
-        title: "Mobile App Development",
-        description: "Cross-platform mobile apps with Flutter and React Native."
-    },
-    {
-        icon: <Brush className="w-10 h-10 text-pink-400 group-hover:scale-110 transition" />,
-        title: "UI/UX Design",
-        description: "Intuitive and modern designs that improve user engagement."
-    },
-    {
-        icon: <Cloud className="w-10 h-10 text-purple-400 group-hover:scale-110 transition" />,
-        title: "Cloud Integration",
-        description: "Deploy, scale, and manage on AWS, Firebase, and GCP."
-    },
-    {
-        icon: <ShieldCheck className="w-10 h-10 text-red-400 group-hover:scale-110 transition" />,
-        title: "QA & Testing",
-        description: "Manual and automated testing for flawless experience."
-    },
-    {
-        icon: <Users className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition" />,
-        title: "IT Consulting",
-        description: "Get expert tech strategy and architecture planning."
-    }
-];
+import { services } from "../components/Service";
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
@@ -41,11 +10,11 @@ const fadeInUp = {
 
 export default function ServicesSection() {
     return (
-        <section id="services" className=" bg-black">
-            <div className="py-16 mx-[5%] max-md:mx-0 rounded-[5rem] bg-white text-black">
+        <section id="services" className=" bg-black py-20">
+            <div className="py-16 mx-[5%] max-md:mx-0 rounded-[5rem] max-md:rounded-none bg-zinc-900 text-black border-zinc-600 max-md:border-b-1 max-md:border-t-1 max-md:border-r-0 max-md:border-l-0 border-1">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <motion.h2
-                        className="text-5xl font-bold mb-4"
+                        className="text-5xl max-md:text-4xl font-bold mb-4 text-white"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
@@ -68,19 +37,22 @@ export default function ServicesSection() {
 
                     <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                         {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                className={`group border-2 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 ${index % 2 === 0 ? 'bg-[#F2EFEA] text-black border-gray-200 hover:border-blue-400' : 'bg-zinc-800 text-white border-gray-700 hover:border-blue-400'}`}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeInUp}
-                                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                            >
-                                <div className="mb-4 flex justify-center">{service.icon}</div>
-                                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                                <p className="text-sm mb-4">{service.description}</p>
-                            </motion.div>
+                            <Link key={index} to={`/services/${service.slug}`}>
+                                <motion.div
+                                    key={index}
+                                    className={`group border-2 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 bg-zinc-800 text-white border-gray-700 hover:border-blue-400`}
+                                    // ${index % 2 === 0 ? 'bg-[#F2EFEA] text-black border-gray-200 hover:border-blue-400' : 'bg-zinc-800 text-white border-gray-700 hover:border-blue-400'}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={fadeInUp}
+                                    transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                                >
+                                    <div className="mb-4 flex justify-center">{service.icon}</div>
+                                    <h3 className="text-xl max-md:text-lg font-semibold mb-2">{service.title}</h3>
+                                    <p className="text-sm mb-4">{service.description}</p>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                 </div>

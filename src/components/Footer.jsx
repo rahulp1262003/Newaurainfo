@@ -1,14 +1,37 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Footer() {
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+    const location = useLocation();
+    const navigate = useNavigate();
+    const scrollToSection = (e, href) => {
+        if (!href || typeof href !== "string") return;
+
+        if (href.startsWith("#")) {
+            e.preventDefault();
+
+            const handleScroll = () => {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                }
+            };
+
+            if (location.pathname !== "/") {
+                navigate("/");
+                setTimeout(() => {
+                    handleScroll();
+                }, 300);
+            } else {
+                handleScroll();
+            }
+        } else {
+            navigate(href);
         }
     };
+
 
     return (
         <footer className="bg-gray-900 text-white py-8">
@@ -16,10 +39,10 @@ export default function Footer() {
                 <div>
                     <h3 className="text-xl font-semibold mb-2">Nexora</h3>
                     <ul className="text-gray-400 text-sm space-y-1 md:flex">
-                        <li><button onClick={() => scrollToSection('home')} className="hover:text-white cursor-pointer pr-3">Home</button></li>
-                        <li><button onClick={() => scrollToSection('about')} className="hover:text-white cursor-pointer pr-3">About</button></li>
-                        <li><button onClick={() => scrollToSection('services')} className="hover:text-white cursor-pointer pr-3">Services</button></li>
-                        <li><button onClick={() => scrollToSection('contact')} className="hover:text-white cursor-pointer pr-3">Contact</button></li>
+                        <li><button onClick={(e) => scrollToSection(e, '/')} className="hover:text-white cursor-pointer pr-3">Home</button></li>
+                        <li><button onClick={(e) => scrollToSection(e, '#about')} className="hover:text-white cursor-pointer pr-3">About</button></li>
+                        <li><button onClick={(e) => scrollToSection(e, '#services')} className="hover:text-white cursor-pointer pr-3">Services</button></li>
+                        <li><button onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-white cursor-pointer pr-3">Contact</button></li>
                     </ul>
                 </div>
 
@@ -28,7 +51,7 @@ export default function Footer() {
                     <div className="text-gray-400 text-sm flex flex-col md:items-start md:flex md:justify-center">
                         <div className="flex justify-center mb-4">
                             <Mail size={18} className="mr-4" />
-                            <a href="mailto:contacttonewaurainfo@gmail.com" rel="noopener noreferrer" >contacttonewaurainfo@gmail.com</a>
+                            <a href="mailto:contact2nexorainfosolution@gmail.com" rel="noopener noreferrer" >contact2nexorainfosolution@gmail.com</a>
                         </div>
                         <div className="flex justify-center mb-4">
                             <div>
@@ -51,7 +74,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="text-center text-gray-500 text-sm mt-6">
-                &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+                &copy; {new Date().getFullYear()} Nexora Info Solution. All rights reserved.
             </div>
         </footer>
     );

@@ -3,9 +3,9 @@ import aboutImg from "../assets/about.png"; // Ensure this file exists
 
 export default function AboutSection() {
     return (
-        <section id="about" className="py-16 bg-black text-white">
+        <section id="about" className="scroll-mt-[50px] py-16 bg-black text-white">
             <div className="max-w-7xl mx-auto px-4 text-center mb-12 relative">
-                <h2 className="text-5xl font-bold">About Us</h2>
+                <h2 className="text-5xl max-md:text-4xl font-bold">About Us</h2>
             </div>
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6 relative">
