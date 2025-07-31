@@ -40,7 +40,7 @@ export default function ServicesSection() {
                             <Link key={index} to={`/services/${service.slug}`}>
                                 <motion.div
                                     key={index}
-                                    className={`group border-2 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 bg-zinc-800 text-white border-gray-700 hover:border-blue-400`}
+                                    className={`group border-2 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 bg-zinc-800 text-white border-zinc-700 hover:border-blue-400`}
                                     // ${index % 2 === 0 ? 'bg-[#F2EFEA] text-black border-gray-200 hover:border-blue-400' : 'bg-zinc-800 text-white border-gray-700 hover:border-blue-400'}
                                     initial="hidden"
                                     whileInView="visible"

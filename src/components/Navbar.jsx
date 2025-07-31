@@ -48,17 +48,24 @@ export default function Navbar() {
 
 
     return (
-        <header className="fixed w-full z-50 bg-transparent text-white backdrop-blur-2xl">
+        <header className="fixed w-full z-50 bg-transparent text-white backdrop-blur-2xl py-3">
             <div className="max-w-7xl mx-auto flex items-center justify-between ">
-                <div className="flex items-center">
+                <div className="flex items-center ml-3">
                     <div>
-                        <img src={Nexora} alt="" className="w-18" />
+                        <a
+                            href="/"
+                        >
+                            <img src={Nexora} alt="" className="w-15 max-md:w-12" />
+                        </a>
                     </div>
-                    <div className="flex flex-col">
-                        <Link to="/" className="text-2xl font-bold text-white">
+                    <div className="flex flex-col justify-center">
+                        {/* <Link to="/" className="text-2xl font-bold text-white max-md:text-lg">
                             Nexora
-                        </Link>
-                        <a href="#home" className=" text-white">
+                        </Link> */}
+                        <a href="/" className="text-xl font-bold text-white max-md:text-[18px] pb-0 mb-0 ">
+                            Nexora
+                        </a>
+                        <a href="/" className="text-white max-md:text-[10px] text-sm">
                             Info Solution
                         </a>
                     </div>
@@ -80,7 +87,7 @@ export default function Navbar() {
                         onClick={() => setIsOpen(!isOpen)}
                         className="focus:outline-none"
                     >
-                        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        {isOpen ? <X className="w-6 h-6 mr-3" /> : <Menu className="w-6 h-6 mr-3" />}
                     </button>
                 </div>
             </div>
@@ -99,15 +106,15 @@ export default function Navbar() {
                             }
                         }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden bg-black px-4 pb-4 overflow-hidden"
+                        className="md:hidden bg-transparent px-4 pb-4 overflow-hidden mt-3 "
                     >
-                        <div className="flex flex-col space-y-4 pt-2">
+                        <div className="flex flex-col space-y-4 pt-2 pl-2">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.href}
                                     onClick={(e) => scrollToSection(e, link.href)}
-                                    className="text-white hover:text-blue-400 transition cursor-pointer py-2"
+                                    className="text-white hover:text-blue-400 transition cursor-pointer"
                                 >
                                     {link.name}
                                 </Link>
