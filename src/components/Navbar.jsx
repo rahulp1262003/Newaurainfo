@@ -31,61 +31,58 @@ export default function Navbar() {
             };
 
             if (location.pathname !== "/") {
-                // Go back to homepage first, then scroll
                 navigate("/");
-                // Delay scroll after navigation
                 setTimeout(() => {
                     handleScroll();
-                }, 300); // adjust if needed
+                }, 300);
             } else {
                 handleScroll();
             }
         } else {
-            // Direct route (like /services)
             setIsOpen(false);
         }
     };
 
-
     return (
-        <header className="fixed w-full z-50 bg-transparent text-white backdrop-blur-2xl py-3">
-            <div className="max-w-7xl mx-auto flex items-center justify-between ">
+        <header
+            className="fixed w-full z-50 bg-transparent text-white backdrop-blur-2xl py-3"
+            role="banner"
+            aria-label="Main navigation"
+        >
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="flex items-center ml-3">
-                    <div>
-                        <a
-                            href="/"
-                        >
-                            <img src={Nexora} alt="" className="w-15 max-md:w-12" />
-                        </a>
-                    </div>
+                    <a href="/" aria-label="Nexora Home">
+                        <img src={Nexora} alt="Nexora Logo" className="w-15 max-md:w-12" />
+                    </a>
                     <div className="flex flex-col justify-center">
-                        {/* <Link to="/" className="text-2xl font-bold text-white max-md:text-lg">
-                            Nexora
-                        </Link> */}
-                        <a href="/" className="text-xl font-bold text-white max-md:text-[18px] pb-0 mb-0 ">
+                        <a href="/" className="text-xl font-bold text-white max-md:text-[18px] pb-0 mb-0" aria-label="Nexora Info Solution Home">
                             Nexora
                         </a>
-                        <a href="/" className="text-white max-md:text-[10px] text-sm">
+                        <span className="text-white max-md:text-[10px] text-sm">
                             Info Solution
-                        </a>
+                        </span>
                     </div>
                 </div>
-                <nav className="hidden md:flex">
+
+                <nav className="hidden md:flex" role="navigation" aria-label="Main menu">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
                             onClick={(e) => scrollToSection(e, link.href)}
                             className="hover:text-black cursor-pointer rounded-xl transition-all duration-600 ease-in-out hover:bg-white px-5 py-2"
+                            aria-label={`Go to ${link.name}`}
                         >
                             {link.name}
                         </a>
                     ))}
                 </nav>
+
                 <div className="md:hidden">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="focus:outline-none"
+                        aria-label={isOpen ? "Close menu" : "Open menu"}
                     >
                         {isOpen ? <X className="w-6 h-6 mr-3" /> : <Menu className="w-6 h-6 mr-3" />}
                     </button>
@@ -106,7 +103,8 @@ export default function Navbar() {
                             }
                         }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden bg-transparent px-4 pb-4 overflow-hidden mt-3 "
+                        className="md:hidden bg-transparent px-4 pb-4 overflow-hidden mt-3"
+                        aria-label="Mobile navigation menu"
                     >
                         <div className="flex flex-col space-y-4 pt-2 pl-2">
                             {navLinks.map((link) => (
@@ -115,6 +113,7 @@ export default function Navbar() {
                                     to={link.href}
                                     onClick={(e) => scrollToSection(e, link.href)}
                                     className="text-white hover:text-blue-400 transition cursor-pointer"
+                                    aria-label={`Go to ${link.name}`}
                                 >
                                     {link.name}
                                 </Link>
