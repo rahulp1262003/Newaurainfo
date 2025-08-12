@@ -45,7 +45,7 @@ export default function ServiceDetail() {
     }
 
     return (
-        <main className="min-h-screen flex flex-col bg-black text-white py-16 px-6">
+        <main className="min-h-screen flex flex-col bg-black text-white py-16 px-6 max-md:px-0">
             <Helmet>
                 <title>{service.title} | Nexora</title>
                 <meta name="description" content={service.description} />
