@@ -38,9 +38,8 @@ export default function ProductSection() {
     };
 
     return (
-        <section id="product" className="py-20 bg-black text-white">
+        <section id="product" className="py-20 bg-black text-white" aria-labelledby="products-heading">
             <Helmet>
-                <title>Our Products | Nexora Info Solution</title>
                 <meta name="description" content="Explore innovative digital products by Nexora Info Solution including Quotely and Human Body Parts Learning App." />
                 <meta name="keywords" content="Nexora products, Quotely app, Human Body Parts app, Nexora apps, Android educational apps, daily quotes app" />
                 <meta property="og:title" content="Our Products | Nexora Info Solution" />
@@ -53,6 +52,7 @@ export default function ProductSection() {
 
             <div className="w-full mx-auto px-4">
                 <motion.h2
+                    id="products-heading"
                     className="text-5xl max-md:text-4xl font-bold text-center mb-4"
                     initial="hidden"
                     whileInView="visible"
@@ -75,16 +75,21 @@ export default function ProductSection() {
 
                 <div className="flex justify-center items-center flex-wrap">
                     {projects.map((project, index) => (
-                        <motion.div
+                        <motion.article
                             key={index}
-                            className="mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition m-5"
+                            className="mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition m-5 "
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
                             variants={fadeInUp}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                         >
-                            <img src={project.image} alt={project.title} className="w-full h-52 object-cover" />
+                            <img
+                                src={project.image}
+                                alt={`${project.title} product preview`}
+                                loading="lazy"
+                                className="w-full h-52 object-cover"
+                            />
                             <div className="p-6 bg-zinc-900">
                                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                                 <p className="text-gray-400 text-sm mb-4">
@@ -96,12 +101,13 @@ export default function ProductSection() {
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-400 hover:text-blue-300 text-sm font-medium"
+                                    className="text-blue-400 hover:text-blue-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                                    aria-label={`View ${project.title} on Google Play Store`}
                                 >
                                     View Product →
                                 </a>
                             </div>
-                        </motion.div>
+                        </motion.article>
                     ))}
                 </div>
             </div>

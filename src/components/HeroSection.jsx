@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Hero from "../assets/video/hero.mp4";
+import HeroPoster from "../assets/video/hero.mp4"; // Static placeholder image
 import { Helmet } from "react-helmet-async";
 
 const taglines = [
@@ -20,6 +21,8 @@ const fadeInUpVariants = {
 
 export default function HeroSection() {
     const [index, setIndex] = useState(0);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+    const videoRef = useRef(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,41 +31,56 @@ export default function HeroSection() {
         return () => clearInterval(interval);
     }, []);
 
+    // Lazy load video when section is in viewport
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setVideoLoaded(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.25 }
+        );
+        if (videoRef.current) {
+            observer.observe(videoRef.current);
+        }
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <>
             <Helmet>
-                <title>Nexora Info Solution - Top IT Services</title>
-                <meta name="description" content="Nexora Info Solution offers expert Web & Mobile App Development, UI/UX Design, Cloud Integration, QA Testing, and IT Consulting." />
-                <meta name="keywords" content="Nexora, IT Services, Web Development, App Development, UI/UX Design, Cloud, QA Testing, IT Consulting" />
-                <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Nexora Info Solution - Crafting Digital Experiences That Matter" />
-                <meta property="og:description" content="Delivering high-quality Web and Mobile App solutions for startups and enterprises." />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://nexora.com" />
-                <meta property="og:image" content="https://nexora.com/assets/preview.jpg" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Nexora Info Solution - Top IT Partner" />
-                <meta name="twitter:description" content="Expert solutions in Web, Mobile, UI/UX, Cloud & QA." />
-                <meta name="twitter:image" content="https://nexora.com/assets/preview.jpg" />
-                <link rel="canonical" href="https://nexora.com" />
+                <link rel="preload" as="image" href={HeroPoster} />
             </Helmet>
 
             <section
                 id="home"
                 className="relative bg-black min-h-screen flex justify-center items-center text-white py-28"
+                ref={videoRef}
             >
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
-                >
-                    <source src={Hero} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                {videoLoaded ? (
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster={HeroPoster}
+                        aria-hidden="true"
+                        className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+                    >
+                        <source src={Hero} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                ) : (
+                    <img
+                        src={HeroPoster}
+                        alt="Background placeholder"
+                        className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+                    />
+                )}
 
-                <div className="absolute inset-0"></div>
+                <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
 
                 <div className="relative z-30 max-w-6xl mx-auto px-4 text-center">
                     <AnimatePresence mode="wait">
@@ -97,9 +115,10 @@ export default function HeroSection() {
                     >
                         <a
                             href="#services"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-base sm:text-lg font-medium transition"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-base sm:text-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                            aria-label="Explore our services"
                         >
-                            Explore Services <ArrowRight className="w-5 h-5" />
+                            Explore Services <ArrowRight className="w-5 h-5" aria-hidden="true" />
                         </a>
                     </motion.div>
                 </div>

@@ -3,13 +3,19 @@ import ServicesSection from "../components/Services";
 import ContactSection from "../components/ContactUS";
 import AboutSection from "../components/About";
 import ProductSection from "../components/Products";
-
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 export default function Home() {
+
     return (
         <>
             <Helmet>
+
+                <meta
+                    name="description"
+                    content="Nexora Info Solution offers expert web, mobile, and software development services tailored to your business needs."
+                />
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
